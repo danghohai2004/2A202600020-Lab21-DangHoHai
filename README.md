@@ -31,13 +31,13 @@ Toàn bộ lab được triển khai theo ba bước liên tiếp, mỗi bước
       |
       |  GitHub Actions kích hoạt tự động
       v
-[Runner: Test -> Train -> Deploy]
-      |                      |
-      |  dvc pull            |  dvc push (model)
-      v                      v
-[Cloud Object Storage]   [Cloud VM]
-  data/                    mlops-serve (FastAPI)
-  models/latest/             POST /predict
+[Runner: Unit Test -> Train -> Eval (>= 0.70) -> Deploy]
+      |                                    |
+      |  dvc pull                          |  dvc push (model)
+      v                                    v
+[Cloud Object Storage]               [Cloud VM]
+  data/                                mlops-serve (FastAPI)
+  models/latest/                         POST /predict
 ```
 
 Bước 1 chỉ chạy trên máy tính cá nhân. Bước 2 và Bước 3 sử dụng toàn bộ kiến trúc trên.
